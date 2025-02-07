@@ -5,6 +5,8 @@ from app.extensions import db
 
 # Creamos una vista personalizada para el modelo User
 class UserModelView(ModelView):
+    # Forzamos que se muestren las columnas id y email
+    column_list = ('id', 'email')
     # Evitamos mostrar el campo 'password_hash'
     column_exclude_list = ['password_hash']
     form_excluded_columns = ['password_hash']
