@@ -13,3 +13,5 @@ class Config:
     SQLALCHEMY_DATABASE_URI = db_url
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "supersecretkey")
+    ADMIN_SECRET = os.getenv("ADMIN_SECRET", "clave_por_defecto")
+

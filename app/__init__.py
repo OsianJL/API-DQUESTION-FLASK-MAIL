@@ -24,6 +24,8 @@ def create_app():
     api.add_resource(RegisterResource, '/register')
     api.add_resource(LoginResource, '/login')
     api.add_resource(ProtectedResource, '/protected')
+    api.add_resource(AdminUserResource, '/admin/user/<int:user_id>')
+
 
     # Ruta de prueba
     @app.route("/")
@@ -39,3 +41,5 @@ def create_app():
 
 # Importar modelos para que sean detectados por Flask-Migrate
 from app.models.user import User  
+from app.resources.user import AdminUserResource
+
