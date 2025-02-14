@@ -7,5 +7,5 @@ class ProtectedResource(Resource):
         # get_jwt_identity() recupera el 'identity' establecido en create_access_token (en nuestro caso, el id del usuario)
         current_user = get_jwt_identity()
         return {
-            "message": f"Hola, usuario {current_user}. Esta es una ruta protegida."
+            "message": f"Hola, usuario con ID número {current_user}. Esta es una ruta protegida."
         }, 200
