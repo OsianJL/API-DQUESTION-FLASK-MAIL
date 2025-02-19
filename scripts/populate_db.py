@@ -15,8 +15,9 @@ def populate():
         for i in range(10):
             email = f'user{i}@example.com'
             password = "Test@1234"
+            confirmed = True
             # Crea un usuario; el id se generará automáticamente mediante la función generate_random_id()
-            user = User(email=email, password=password)
+            user = User(email=email, password=password, confirmed=confirmed)
             db.session.add(user)
             db.session.commit()  # Es importante commitear para obtener el id del usuario
 

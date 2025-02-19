@@ -12,9 +12,10 @@ class User(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     confirmed = db.Column(db.Boolean, default=False)
 
-    def __init__(self, email, password):
+    def __init__(self, email, password, confirmed=False):
         self.email = email
         self.set_password(password)
+        self.confirmed = confirmed
 
     def set_password(self, password):
         """Hashea la contraseña antes de guardarla en la base de datos"""
