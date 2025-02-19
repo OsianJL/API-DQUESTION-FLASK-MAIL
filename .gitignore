@@ -1,0 +1,33 @@
+# Entornos virtuales
+venv/
+*.egg-info/
+.eggs/
+*.egg
+
+# Archivos de configuración de entorno
+.env
+*.env.*
+
+# Archivos y directorios de caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Archivos de logs
+*.log
+
+# Archivos de migraciones temporales (si usas una carpeta separada para backups, etc.)
+# Por lo general, la carpeta migrations se sube, pero si tienes una copia de respaldo (por ejemplo, migrations_old)
+migrations_old/
+
+# Archivos de configuración del IDE (ajusta según tu editor)
+.vscode/
+.idea/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Otros archivos temporales o generados
+*.tmp

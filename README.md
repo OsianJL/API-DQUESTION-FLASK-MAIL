@@ -278,8 +278,11 @@ Se accede a través del navegador para gestionar usuarios (la contraseña no se 
   flask db migrate -m "Mensaje de migración"
   flask db upgrade
   ```
-
+- **Scripts**: usa este comando: python -m scripts.<script_example>
 - **Docker**: Asegúrate de que el contenedor de PostgreSQL esté usando una versión compatible (en este proyecto se ha sincronizado la versión en Heroku y local, por ejemplo, PostgreSQL 16).
+
+## superrole: tempadmin 
+   superrole PASSWORD: tempsecret
 
 ## Problemas Comunes y Solución
 

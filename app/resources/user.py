@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 from flask import current_app
 from app.models.user import User
+from app.models.profile import Profile
 from app.extensions import db
 
 class AdminUserResource(Resource):
@@ -19,6 +20,12 @@ class AdminUserResource(Resource):
         if not user:
             return {"message": "Usuario no encontrado."}, 404
 
+        # Buscar el perfil asociado y eliminarlo, si existe
+        profile = Profile.query.get(user_id)
+        if profile:
+            db.session.delete(profile)
+
+        # Eliminar el usuario
         db.session.delete(user)
         db.session.commit()
-        return {"message": "Usuario eliminado exitosamente."}, 200
+        return {"message": "Usuario y perfil eliminados exitosamente."}, 200

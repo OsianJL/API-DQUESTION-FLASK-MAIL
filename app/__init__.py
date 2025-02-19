@@ -19,12 +19,16 @@ def create_app():
 
     # Registrar los endpoints
     from app.resources.auth import RegisterResource, LoginResource
-    from app.resources.protected import ProtectedResource
+    from app.resources.self_user import SelfUserResource
     
     api.add_resource(RegisterResource, '/register')
     api.add_resource(LoginResource, '/login')
-    api.add_resource(ProtectedResource, '/protected')
+    api.add_resource(SelfUserResource, '/self_user')
     api.add_resource(AdminUserResource, '/admin/user/<int:user_id>')
+    api.add_resource(ProfileResource, '/profile', '/profile/<int:user_id>')
+    api.add_resource(ConfirmEmailResource, '/confirm/<string:token>', endpoint='confirm_email')
+
+
 
 
     # Ruta de prueba
@@ -41,5 +45,9 @@ def create_app():
 
 # Importar modelos para que sean detectados por Flask-Migrate
 from app.models.user import User  
+from app.models.profile import Profile
+from app.resources.profile import ProfileResource
 from app.resources.user import AdminUserResource
+from app.resources.confirm import ConfirmEmailResource
+
 

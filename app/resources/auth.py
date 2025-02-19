@@ -1,8 +1,9 @@
-from flask import request, jsonify
+from flask import request, jsonify, url_for, current_app
 from flask_restful import Resource
 from app.models.user import User
 from app.extensions import db
 from app.services.validators import validate_password
+from app.utils.token import generate_confirmation_token
 from flask_jwt_extended import create_access_token
 import datetime
 
@@ -26,12 +27,22 @@ class RegisterResource(Resource):
         if User.query.filter_by(email=email).first():
             return {"message": "El email ya está registrado."}, 400
 
-        # Crear el usuario
+        # Crear el usuario, pero con confirmed=False
         new_user = User(email=email, password=password)
+        new_user.confirmed = False  # Asegúrate de que el usuario no esté confirmado inicialmente
         db.session.add(new_user)
         db.session.commit()
 
-        return {"message": "Usuario registrado exitosamente."}, 201
+        # Generar token de confirmación
+        token = generate_confirmation_token(email)
+        
+        # Generar el link de confirmación, usando url_for para construir la URL (asumiendo que tienes un endpoint de confirmación)
+        confirm_url = url_for("confirm_email", token=token, _external=True)
+        
+        # En un entorno real, enviarías un email con este enlace. En desarrollo, podrías imprimirlo en la consola.
+        current_app.logger.info(f"Enlace de confirmación: {confirm_url}")
+
+        return {"message": f"Usuario {email} registrado exitosamente. Por favor, confirma tu email: {confirm_url}"}, 201
 
 
 class LoginResource(Resource):

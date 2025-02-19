@@ -10,8 +10,8 @@ def test_register_and_login(client):
     assert response.status_code == 201, "El registro debería retornar status 201"
     data = response.get_json()
     assert "message" in data
-    assert data["message"] == "Usuario registrado exitosamente."
-
+    assert data["message"] == "Usuario test@example.com registrado exitosamente."
+  
     # Iniciar sesión con las credenciales registradas
     login_data = {
         "email": "test@example.com",
