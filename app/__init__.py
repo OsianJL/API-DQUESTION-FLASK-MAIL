@@ -20,6 +20,7 @@ def create_app():
     # Registrar los endpoints
     from app.resources.auth import RegisterResource, LoginResource
     from app.resources.self_user import SelfUserResource
+    from app.resources.public_message import PublicMessageResource, PublicMessageDetailResource
     
     api.add_resource(RegisterResource, '/register')
     api.add_resource(LoginResource, '/login')
@@ -27,6 +28,8 @@ def create_app():
     api.add_resource(AdminUserResource, '/admin/user/<int:user_id>')
     api.add_resource(ProfileResource, '/profile', '/profile/<int:user_id>')
     api.add_resource(ConfirmEmailResource, '/confirm/<string:token>', endpoint='confirm_email')
+    api.add_resource(PublicMessageResource, '/message' )
+    api.add_resource(PublicMessageDetailResource, '/message/<int:message_id>' )
 
 
 
@@ -49,5 +52,6 @@ from app.models.profile import Profile
 from app.resources.profile import ProfileResource
 from app.resources.user import AdminUserResource
 from app.resources.confirm import ConfirmEmailResource
+from app.models.public_message import PublicMessage
 
 
