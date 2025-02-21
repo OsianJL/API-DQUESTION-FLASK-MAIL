@@ -53,5 +53,8 @@ from app.resources.profile import ProfileResource
 from app.resources.user import AdminUserResource
 from app.resources.confirm import ConfirmEmailResource
 from app.models.public_message import PublicMessage
+from app.models.chat import Chat
+from app.models.chat_message import ChatMessage
+
 
 
