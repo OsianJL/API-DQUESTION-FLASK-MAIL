@@ -92,7 +92,7 @@ class PublicMessageDetailResource(Resource):
     def get(self, message_id):
         """
         Obtener el detalle de un mensaje público.
-        Si el usuario autenticado es el autor, se incluirá la respuesta (reply).
+        Si el usuario autenticado es el autor, se incluirá la respuesta (reply) y el responder id.
         """
         current_user_id = int(get_jwt_identity())
         message = db.session.get(PublicMessage, message_id)
@@ -112,6 +112,7 @@ class PublicMessageDetailResource(Resource):
         # Solo mostrar la respuesta si el usuario autenticado es el autor
         if current_user_id == message.user_id:
             data["reply"] = message.reply
+            data["responder_id"] = message.responder_id
         return data, 200
 
     @jwt_required()
@@ -119,7 +120,8 @@ class PublicMessageDetailResource(Resource):
         """
         Responder a un mensaje.
         Se permite a un usuario (que no sea el autor) enviar una respuesta.
-        La respuesta se guarda en el campo reply y se marca contestado=True.
+        La respuesta se guarda en el campo reply, se marca contestado=True,
+        y se almacena el ID del usuario que responde en responder_id.
         Nota: La respuesta solo será visible para el autor cuando consulte el detalle.
         """
         current_user_id = int(get_jwt_identity())
@@ -137,8 +139,10 @@ class PublicMessageDetailResource(Resource):
 
         message.reply = reply
         message.contestado = True
+        message.responder_id = current_user_id  # Guardamos el ID del que responde
         db.session.commit()
-        return {"message": "Respuesta enviada exitosamente."}, 200
+        return {"message": "Respuesta enviada exitosamente.", "responder_id": current_user_id}, 200
+
 
     @jwt_required()
     def delete(self, message_id):

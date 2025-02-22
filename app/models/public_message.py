@@ -12,6 +12,7 @@ class PublicMessage(db.Model):
     contestado = db.Column(db.Boolean, default=False)
     content = db.Column(db.Text, nullable=False)
     reply = db.Column(db.Text, nullable=True)
+    responder_id = db.Column(db.BigInteger, nullable=True)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 

@@ -21,6 +21,7 @@ def create_app():
     from app.resources.auth import RegisterResource, LoginResource
     from app.resources.self_user import SelfUserResource
     from app.resources.public_message import PublicMessageResource, PublicMessageDetailResource
+    from app.resources.chat import ChatListResource, ChatResource, ChatMessageResource
     
     api.add_resource(RegisterResource, '/register')
     api.add_resource(LoginResource, '/login')
@@ -30,6 +31,10 @@ def create_app():
     api.add_resource(ConfirmEmailResource, '/confirm/<string:token>', endpoint='confirm_email')
     api.add_resource(PublicMessageResource, '/message' )
     api.add_resource(PublicMessageDetailResource, '/message/<int:message_id>' )
+    api.add_resource(ChatListResource, '/chats')
+    api.add_resource(ChatResource, '/chat')
+    api.add_resource(ChatMessageResource, '/chat/<int:chat_id>')
+
 
 
 
