@@ -2,7 +2,7 @@ from flask import request, jsonify, current_app
 from flask_restful import Resource
 from app.extensions import db
 from app.models.user import User
-from app.utils.token import confirm_token
+from app.services.token import confirm_token
 
 class ConfirmEmailResource(Resource):
     def get(self, token):

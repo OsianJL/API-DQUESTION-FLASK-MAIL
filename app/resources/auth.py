@@ -3,7 +3,7 @@ from flask_restful import Resource
 from app.models.user import User
 from app.extensions import db
 from app.services.validators import validate_password
-from app.utils.token import generate_confirmation_token
+from app.services.token import generate_confirmation_token
 from flask_jwt_extended import create_access_token
 import datetime
 
