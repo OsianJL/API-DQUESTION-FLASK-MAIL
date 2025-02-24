@@ -2,7 +2,7 @@ from flask import request, jsonify, url_for, current_app
 from flask_restful import Resource
 from app.models.user import User
 from app.extensions import db
-from app.services.validators import validate_password
+from app.services.validators import validate_password, validate_email
 from app.services.token import generate_confirmation_token
 from flask_jwt_extended import create_access_token
 import datetime
@@ -17,6 +17,11 @@ class RegisterResource(Resource):
         if not email or not password:
             return {"message": "Se requieren email y password"}, 400
 
+        # Validar la contraseña con la función definida
+        if not validate_email(email):
+            return {"message": "El email no cumple los requisitos de seguridad. "
+                               "Debe tener el formato de una dirección de email"}, 400
+    
         # Validar la contraseña con la función definida
         if not validate_password(password):
             return {"message": "La contraseña no cumple los requisitos de seguridad. "
