@@ -9,3 +9,5 @@ python-dotenv
 Flask-Admin
 pytest
 gunicorn
+
+
