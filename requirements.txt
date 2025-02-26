@@ -7,6 +7,7 @@ Flask-JWT-Extended
 psycopg2-binary
 python-dotenv
 Flask-Admin
+Flask-Mail
 pytest
 gunicorn
 

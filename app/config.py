@@ -18,7 +18,7 @@ class Config:
 
 
     # Configuración para Flask-Mail
-    MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com")
+    MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.sendgrid.net")
     MAIL_PORT = int(os.getenv("MAIL_PORT", 587))
     MAIL_USE_TLS = os.getenv("MAIL_USE_TLS", "True").lower() in ['true', '1']
     MAIL_USERNAME = os.getenv("MAIL_USERNAME")  # Tu email
