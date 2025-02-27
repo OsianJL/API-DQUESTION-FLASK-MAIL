@@ -21,6 +21,9 @@ def create_app():
     # Registrar los endpoints
     from app.resources.auth import RegisterResource, LoginResource
     from app.resources.self_user import SelfUserResource
+    from app.resources.profile import ProfileResource
+    from app.resources.user import AdminUserResource
+    from app.resources.confirm import ConfirmEmailResource
     from app.resources.public_message import PublicMessageResource, PublicMessageDetailResource
     from app.resources.chat import ChatListResource, ChatResource, ChatMessageResource
     from app.resources.password_reset import PasswordResetRequestResource, PasswordResetConfirmResource
@@ -59,9 +62,6 @@ def create_app():
 # Importar modelos para que sean detectados por Flask-Migrate
 from app.models.user import User  
 from app.models.profile import Profile
-from app.resources.profile import ProfileResource
-from app.resources.user import AdminUserResource
-from app.resources.confirm import ConfirmEmailResource
 from app.models.public_message import PublicMessage
 from app.models.chat import Chat
 from app.models.chat_message import ChatMessage
