@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from app.config import Config
-from app.extensions import db, bcrypt, jwt
+from app.extensions import db, bcrypt, jwt, mail
 from flask_migrate import Migrate
 from flask_restful import Api
 
@@ -13,6 +13,7 @@ def create_app():
     bcrypt.init_app(app)
     jwt.init_app(app)
     Migrate(app, db)
+    mail.init_app(app)
 
     # Inicializar Flask-RESTful API
     api = Api(app)
