@@ -23,6 +23,8 @@ def create_app():
     from app.resources.self_user import SelfUserResource
     from app.resources.public_message import PublicMessageResource, PublicMessageDetailResource
     from app.resources.chat import ChatListResource, ChatResource, ChatMessageResource
+    from app.resources.password_reset import PasswordResetRequestResource, PasswordResetConfirmResource
+
     
     api.add_resource(RegisterResource, '/register')
     api.add_resource(LoginResource, '/login')
@@ -30,6 +32,8 @@ def create_app():
     api.add_resource(AdminUserResource, '/admin/user/<int:user_id>')
     api.add_resource(ProfileResource, '/profile', '/profile/<int:user_id>')
     api.add_resource(ConfirmEmailResource, '/confirm/<string:token>', endpoint='confirm_email')
+    api.add_resource(PasswordResetRequestResource, '/reset_password')
+    api.add_resource(PasswordResetConfirmResource, '/reset_password/confirm/<string:token>', endpoint="password_reset_confirm")
     api.add_resource(PublicMessageResource, '/message' )
     api.add_resource(PublicMessageDetailResource, '/message/<int:message_id>' )
     api.add_resource(ChatListResource, '/chats')
