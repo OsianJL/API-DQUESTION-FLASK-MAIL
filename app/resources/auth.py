@@ -49,7 +49,7 @@ class RegisterResource(Resource):
         subject = "Confirma tu email"
         html_body = f"""
             <p>Hola,</p>
-            <p>Gracias por registrarte. Por favor, confirma tu email haciendo clic en el siguiente enlace:</p>
+            <p>Gracias por registrarte en QuestionsApp. Por favor, confirma tu email haciendo clic en el siguiente enlace:</p>
             <p><a href="{confirm_url}">{confirm_url}</a></p>
             <p>Si no te registraste, ignora este correo.</p>
         """
