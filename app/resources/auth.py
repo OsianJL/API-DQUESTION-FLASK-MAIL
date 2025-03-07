@@ -83,8 +83,11 @@ class LoginResource(Resource):
         if not user or not user.check_password(password):
             return {"message": "Credenciales inválidas"}, 401
 
-        # Crear un token JWT
-        # Definimos un tiempo de expiración (por ejemplo, 1 hora)
+        # Verificar si el usuario ha confirmado su email
+        if not user.confirmed:
+            return {"message": "El usuario no ha confirmado su email."}, 401
+
+        # Crear un token JWT con expiración de 1 hora
         expires = datetime.timedelta(hours=1)
         access_token = create_access_token(identity=str(user.id), expires_delta=expires)
 
