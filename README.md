@@ -1,9 +1,3 @@
-I'll convert the README to a clean, well-formatted Markdown document.
-
-
-
-
-
 # Backend Test API
 
 Esta API es un proyecto de ejemplo que utiliza las siguientes tecnologías:
